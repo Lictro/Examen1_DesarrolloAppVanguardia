@@ -4,21 +4,13 @@ import './NewContact.css';
 import { database } from './firebase';
 
 class NewContact extends Component {
-  constructor() {
-    super();
-    
-    this.state = {
+    state = {
       name: '',
       phone: '',
       email: '',
       twitter: '',
       belongsto: ''
     };
-
-    this.handleSubmit = this
-      .handleSubmit
-      .bind(this);
-  }
 
   contactsRef = database.ref('/contacts');
 
@@ -29,12 +21,12 @@ class NewContact extends Component {
       phone: this.state.phone, 
       email: this.state.email,
       twitter: this.state.twitter,
-      belongsto: this.state.belongsto
+      belongsto: ''
     });
   }
 
   render() {
-    const {name, email, phone, twitter, belongsto} = this.state;
+    const {name, email, phone, twitter} = this.state;
 
     return (
       <form className="NewContact">
@@ -58,10 +50,6 @@ class NewContact extends Component {
           value={twitter}
           placeholder="Twitter User"
           onChange={(event) => this.setState({twitter: event.target.value})}/>      
-        <input
-          type="text"
-          value={belongsto}
-          onChange={(event) => this.setState({belongsto: event.target.value})}/>
         <button onClick={this.handleSubmit} disabled={!name}>
           Submit
         </button>
@@ -71,7 +59,8 @@ class NewContact extends Component {
 }
 
 NewContact.propTypes = {
-  restaurantsRef: object
+  contactsRef: object,
+  belong: object
 };
 
 export default NewContact;

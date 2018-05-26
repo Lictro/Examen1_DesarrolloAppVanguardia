@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { auth, database } from './firebase';
 import CurrentUser from './CurrentUser';
 import SignIn from './SignIn';
-import NewContact from './NewContact'
-import Contacts from './Contacts'
+import NewContact from './NewContact';
+import Contacts from './Contacts';
 import './Application.css';
 
 class Application extends Component {
@@ -32,7 +32,7 @@ class Application extends Component {
         </header>
         {!currentUser && <SignIn />}
         {currentUser && <CurrentUser user={currentUser} />}
-        {currentUser && <NewContact belongsto={currentUser.email}/>}
+        {currentUser && <NewContact/>}
         {currentUser && <Contacts contacts={contacts} />}
       </div>
     );

@@ -4,10 +4,10 @@ import './Contact.css';
 
 class Contact extends Component {
   render() {
-    const { name } = this.props;
+    const { name, email, phone, twitter } = this.props;
     return (
       <div className="Contact">
-        <h4>{name}</h4>
+        <h3>{name} - {email} - {phone} - {twitter}</h3>
       </div>
     );
   }
@@ -15,6 +15,9 @@ class Contact extends Component {
 
 Contact.propTypes = {
   name: string,
+  email: string,
+  phone: string,
+  twitter: string,
   votes: object,
   user: object,
   handleSelect: func,
