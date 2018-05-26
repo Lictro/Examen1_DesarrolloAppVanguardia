@@ -32,8 +32,8 @@ class Application extends Component {
         </header>
         {!currentUser && <SignIn />}
         {currentUser && <CurrentUser user={currentUser} />}
-        {currentUser && <NewContact/>}
-        {currentUser && <Contacts contacts={contacts} />}
+        {currentUser && <NewContact belong={currentUser.email}/>}
+        {currentUser && <Contacts contacts={contacts} belong={currentUser.email}/>}
       </div>
     );
   }

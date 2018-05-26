@@ -21,7 +21,7 @@ class NewContact extends Component {
       phone: this.state.phone, 
       email: this.state.email,
       twitter: this.state.twitter,
-      belongsto: ''
+      belongsto: this.props.belong
     });
   }
 

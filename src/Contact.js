@@ -3,7 +3,7 @@ import { string, object, func } from 'prop-types';
 import './Contact.css';
 
 class Contact extends Component {
-  render() {
+    render() {
     const { name, email, phone, twitter } = this.props;
     return (
       <div className="Contact">
