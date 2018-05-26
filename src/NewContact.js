@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {object} from 'prop-types';
 import './NewContact.css';
+import { database } from './firebase';
 
 class NewContact extends Component {
   constructor() {
@@ -10,7 +11,8 @@ class NewContact extends Component {
       name: '',
       phone: '',
       email: '',
-      twitter: ''
+      twitter: '',
+      belongsto: ''
     };
 
     this.handleSubmit = this
@@ -18,12 +20,21 @@ class NewContact extends Component {
       .bind(this);
   }
 
-  handleSubmit(event) {
+  contactsRef = database.ref('/contacts');
+
+  handleSubmit = event => {
     event.preventDefault();
+    this.contactsRef.push({
+      name: this.state.name, 
+      phone: this.state.phone, 
+      email: this.state.email,
+      twitter: this.state.twitter,
+      belongsto: this.state.belongsto
+    });
   }
 
   render() {
-    const {name, email, phone, twitter} = this.state;
+    const {name, email, phone, twitter, belongsto} = this.state;
 
     return (
       <form className="NewRestaurant">
@@ -47,6 +58,10 @@ class NewContact extends Component {
           value={twitter}
           placeholder="Twitter User"
           onChange={(event) => this.setState({twitter: event.target.value})}/>      
+        <input
+          type="text"
+          value={this.props.belongsto}
+          onChange={(event) => this.setState({belongsto: event.target.value})}/>
         <button onClick={this.handleSubmit} disabled={!name}>
           Submit
         </button>

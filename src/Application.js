@@ -11,11 +11,19 @@ class Application extends Component {
   }
 
   state = {
-    currentUser: null
+    currentUser: null,
+    contacts: null
   };
+
+  contactsRef = database.ref('/contacts');
 
   componentDidMount() {
     auth.onAuthStateChanged(currentUser => { this.setState({ currentUser: currentUser }); });
+    this.contactsRef.on('value', (snapshot) =>
+      this.setState({
+        contacts: snapshot.val()
+      })
+    );
   }
 
   render() {
@@ -27,6 +35,7 @@ class Application extends Component {
         </header>
         {!currentUser && <SignIn />}
         {currentUser && <CurrentUser user={currentUser} />}
+        {currentUser && <NewContact belongsto={currentUser.email}/>}
       </div>
     );
   }
