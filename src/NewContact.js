@@ -37,7 +37,7 @@ class NewContact extends Component {
     const {name, email, phone, twitter, belongsto} = this.state;
 
     return (
-      <form className="NewRestaurant">
+      <form className="NewContact">
         <input
           type="text"
           value={name}
@@ -60,7 +60,7 @@ class NewContact extends Component {
           onChange={(event) => this.setState({twitter: event.target.value})}/>      
         <input
           type="text"
-          value={this.props.belongsto}
+          value={belongsto}
           onChange={(event) => this.setState({belongsto: event.target.value})}/>
         <button onClick={this.handleSubmit} disabled={!name}>
           Submit

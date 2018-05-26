@@ -3,13 +3,10 @@ import { auth, database } from './firebase';
 import CurrentUser from './CurrentUser';
 import SignIn from './SignIn';
 import NewContact from './NewContact'
+import Contacts from './Contacts'
 import './Application.css';
 
 class Application extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     currentUser: null,
     contacts: null
@@ -27,7 +24,7 @@ class Application extends Component {
   }
 
   render() {
-    const { currentUser, restaurants } = this.state;
+    const { currentUser, contacts } = this.state;
     return (
       <div className="Application">
         <header className="Application--header">
@@ -36,6 +33,7 @@ class Application extends Component {
         {!currentUser && <SignIn />}
         {currentUser && <CurrentUser user={currentUser} />}
         {currentUser && <NewContact belongsto={currentUser.email}/>}
+        {currentUser && <Contacts contacts={contacts} />}
       </div>
     );
   }
